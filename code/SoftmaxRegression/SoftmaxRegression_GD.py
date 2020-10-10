@@ -1,6 +1,4 @@
 import numpy as np
-import pandas as pd
-import random
 import matplotlib.pyplot as plt
 from matplotlib import animation
 """
@@ -92,8 +90,8 @@ ax0=plt.subplot(131,xlim=(1.5, 5), ylim=(0, 3))#创建第一个坐标轴,绘制�
 plt.xlabel("Fetures1")#设置x轴标签
 plt.ylabel("Feature2")#设置y轴标签
 plt.title("Classification Line")#设置标题
-a1=ax0.scatter(train_X[:,0], train_X[:,1], c=train_y, cmap='Dark2')#在第一个坐标轴上绘制标签为0数据的分布情况
-a2=ax0.scatter(test_X[:,0], test_X[:,1], c=test_y, cmap='Dark2')#在第一个坐标轴上绘制标签为1数据的分布情况
+a1=ax0.scatter(train_X[:,0], train_X[:,1], c=train_y, cmap='Dark2')#在第一个坐标轴上绘制训练集数据的分布情况
+a2=ax0.scatter(test_X[:,0], test_X[:,1], c=test_y, cmap='Dark2')#在第一个坐标轴上绘制测试集数据的分布情况
 ax1=plt.subplot(132,xlim=(0, 500), ylim=(15, 130))#创建第二个坐标轴，绘制损失函数下降情况
 plt.xlabel("Iteration")
 plt.ylabel("Cost")
