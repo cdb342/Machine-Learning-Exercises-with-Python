@@ -1,6 +1,6 @@
 import numpy as np
-X=np.loadtxt("x.txt")
-y=np.loadtxt("y.txt")
+X=np.loadtxt("./dataset/price/x.txt")
+y=np.loadtxt("./dataset/price/y.txt")
 class LinearRegression:
     def __init__(self,alpha,times):
         self.alpha=alpha
