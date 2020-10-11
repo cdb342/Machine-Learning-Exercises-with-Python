@@ -1,7 +1,6 @@
 import numpy as np
-import pandas as pd
-import random
-
+import matplotlib.pyplot as plt
+from matplotlib import animation
 """
 导入数据
 train_X:训练集特征集合   train_y:训练集标签集合
@@ -91,16 +90,14 @@ test_y_hat = aa.predict(test_X_st)#用训练好的权值预测测试集
 计算每一次迭代后的准确率
 """
 ac1=[]
-for i in range(aa.times+1):
+for i in range(aa.times):
     ac1.append(accuracy(train_X_st,train_y,aa.theta[i]))
 ac2=[]
-for i in range(aa.times+1):
+for i in range(aa.times):
     ac2.append(accuracy(test_X_st,test_y,aa.theta[i]))
 """
 可视化
 """
-import matplotlib.pyplot as plt
-from matplotlib import animation
 #将标签为1的数和标签为0的数分离开来，以方便画散点图描绘数据分布
 index0_train=np.where(train_y==0)
 index0_test=np.where(test_y==0)
