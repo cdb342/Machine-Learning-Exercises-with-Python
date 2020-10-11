@@ -1,8 +1,8 @@
 ```Python
 import numpy as np
 import matplotlib.pyplot as plt
-X=np.loadtxt("x.txt")
-y=np.loadtxt("y.txt")
+X=np.loadtxt("./dataset/price/x.txt")
+y=np.loadtxt("./dataset/price/y.txt")
 X_train=np.asmatrix(np.insert(X.reshape(-1,1),0,1,axis=1))
 y_train=np.matrix(y.reshape(-1,1))
 theta=(X_train.T*X_train).I*X_train.T*y_train
