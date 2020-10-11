@@ -6,10 +6,10 @@ from matplotlib import animation
 train_X:训练集特征集合   train_y:训练集标签集合
 test_X:测试集特征集合    test_y：测试集标签集合
 """
-train_X=np.loadtxt("./Exam/train/x.txt")
-train_y=np.loadtxt("./Exam/train/y.txt")
-test_X=np.loadtxt("./Exam/test/x.txt")
-test_y=np.loadtxt("./Exam/test/y.txt")
+train_X=np.loadtxt("./dataset/Exam/train/x.txt")
+train_y=np.loadtxt("./dataset/Exam/train/y.txt")
+test_X=np.loadtxt("./dataset/Exam/test/x.txt")
+test_y=np.loadtxt("./dataset/Exam/test/y.txt")
 print(train_X,train_y,test_X,test_y)#展示数据
 """
 建立sigmoid函数
