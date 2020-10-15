@@ -50,7 +50,7 @@ class Perceptron_Mini_batch_Adam():
                 self.omiga.append(self.omiga[i*Num_batch+j]-self.alpha*v_correct/(np.sqrt(s_correct)+10**(-8)))#用adam算法更新权值
     def predict(self,X):
         self.X=np.insert(X,0,1,axis=1)
-        H_omiga=np.dot(self.X, self.omiga) >= 0
+        H_omiga=np.dot(self.X, self.omiga[-1]) >= 0
         return H_omiga
 def Accuracy_list(X,y,omiga):#准确率计算函数（输入迭代过程中生成的每一个权值，用矩阵相乘的方式计算每个权值对应的准确率）
     omiga=np.array(omiga[:-1]).reshape(-1, 3).T
