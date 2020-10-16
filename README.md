@@ -2,12 +2,12 @@
 - ## 感知机
 ### I.以两门考试成绩数据集进行二分类，Mini_batch梯度下降
 ### 因为梯度下降会遇到局部极小值点，所以用了Adam算法，因为数据集线性不可分，所以最后不能收敛
-![](./res/Perceptron_Mini_batch_Adam.gif
+![](./res/Perceptron_Mini_batch_Adam.gif)
 ### II.使用Multiclass感知机以两门考试成绩数据集进行二分类，Mini_batch梯度下降
 ### 与以上相似
-![](./res/Perceptron_Multi_Class_Mini_batch_Adam.gif
+![](./res/Perceptron_Multi_Class_Mini_batch_Adam.gif)
 ### II.使用Multiclass感知机以鸢尾花数据集进行三分类，Mini_batch梯度下降，使用了Adam算法
-![](./res/Perceptron_3Classes_Mini_batch_Adam.gif
+![](./res/Perceptron_3Classes_Mini_batch_Adam.gif)
 - ## softmax回归
 ### 用鸢尾花数据集对3种鸢尾花分类
 ### I.Softmax回归梯度下降可视化结果
