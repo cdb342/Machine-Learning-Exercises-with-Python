@@ -6,10 +6,10 @@ from matplotlib import animation
 train_X:训练集特征集合   train_y:训练集标签集合
 test_X:测试集特征集合    test_y：测试集标签集合
 """
-train_X=np.loadtxt("./Iris/train/x.txt")
-train_y=np.loadtxt("./Iris/train/y.txt")
-test_X=np.loadtxt("./Iris/test/x.txt")
-test_y=np.loadtxt("./Iris/test/y.txt")
+train_X=np.loadtxt("./dataset/Iris/train/x.txt")
+train_y=np.loadtxt("./dataset/Iris/train/y.txt")
+test_X=np.loadtxt("./dataset/Iris/test/x.txt")
+test_y=np.loadtxt("./dataset/Iris/test/y.txt")
 print(train_X,'\n',train_y,'\n',test_X,'\n',test_y)#展示数据
 """创建Perceptron_3Classes_Mini_batch_Adam类
 fit():训练数据的方法
