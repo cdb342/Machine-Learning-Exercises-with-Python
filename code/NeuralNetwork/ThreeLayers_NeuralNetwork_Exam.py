@@ -6,10 +6,10 @@ Import datasets
 train_X:feature of training set   train_y:classes of training set
 test_X:feature of test set        test_y:classes of test set
 """
-train_X=np.loadtxt("./Exam/train/x.txt")
-train_y=np.loadtxt("./Exam/train/y.txt").reshape(-1,1)#Transfer the classes set into column vector
-test_X=np.loadtxt("./Exam/test/x.txt")
-test_y=np.loadtxt("./Exam/test/y.txt").reshape(-1,1)#Transfer the classes set into column vector
+train_X=np.loadtxt("./dataset//Exam/train/x.txt")
+train_y=np.loadtxt("./dataset/Exam/train/y.txt").reshape(-1,1)#Transfer the classes set into column vector
+test_X=np.loadtxt("./dataset/Exam/test/x.txt")
+test_y=np.loadtxt("./dataset/Exam/test/y.txt").reshape(-1,1)#Transfer the classes set into column vector
 #print(train_X,'\n',train_y,'\n',test_X,'\n',test_y)
 """
 Generate some data for drawing the classification boundary
