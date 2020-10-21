@@ -52,7 +52,8 @@ class ThreeLayers_NeuralNetworks():
         self.b2=np.random.randn(1,3)
         self.cost=[]
         self.Y_hat=[]
-        self.Accuracy=[]
+        self.Accuracy_train=[]
+        self.Accuracy_test = []
         s_W1 = v_W1 = np.zeros((2, 2))
         s_W2 = v_W2 = np.zeros((2, 3))
         s_b1 = v_b1 = np.zeros((1, 2))
@@ -61,22 +62,24 @@ class ThreeLayers_NeuralNetworks():
         for i in range(self.times):
             self.ZZ.append(self.predict(XX).reshape(np.shape(XX1)))
             h=self.feedforward(self.X)
+            y_hat_test = self.predict(test_X)
             y_hat = self.predict(self.X)
-            self.Y_hat.append(y_hat)
-            J=np.sum((h-y)**2)/2
+            ac_test = self.accuracy(y_hat_test,test_y)
+            ac_train=self.accuracy(y_hat,self.y)
+            self.Accuracy_test.append(ac_test)
+            self.Accuracy_train.append(ac_train)
+            J = np.sum((h - y) ** 2) / 2
             self.cost.append(J)
-            ac=self.accuracy(y_hat)
-            self.Accuracy.append(ac)
             y_mul=np.multiply(np.multiply(h,1-h),h-y)
             A_mul=np.multiply(self.A,1-self.A)
             self.g_b2=np.sum(y_mul,axis=0)
             self.g_W2=np.dot(self.A.T,y_mul)
             self.g_W1=np.dot(self.X.T,np.multiply(A_mul,np.dot(y_mul,self.W2.T)))
             self.g_b1=np.asarray([np.dot(self.W2[0],np.dot(y_mul.T,A_mul)[:,0]),np.dot(self.W2[1],np.dot(y_mul.T,A_mul)[:,1])])
-            """s_W1,v_W1,self.g_W1=Adam(s_W1,v_W1,self.g_W1,i+1)
+            s_W1,v_W1,self.g_W1=Adam(s_W1,v_W1,self.g_W1,i+1)
             s_W2, v_W2, self.g_W2 = Adam(s_W2, v_W2, self.g_W2, i+1)
             s_b1, v_b1, self.g_b1 = Adam(s_b1, v_b1, self.g_b1, i+1)
-            s_b2, v_b2, self.g_b2 = Adam(s_b2, v_b2, self.g_b2, i+1)"""
+            s_b2, v_b2, self.g_b2 = Adam(s_b2, v_b2, self.g_b2, i+1)
             self.W1-=self.yita*self.g_W1
             self.W2-=self.yita*self.g_W2
             self.b1-=self.yita*self.g_b1
@@ -85,14 +88,14 @@ class ThreeLayers_NeuralNetworks():
         h=self.feedforward(X)
         y_hat=np.argmax(h,axis=1).reshape(-1,1)
         return y_hat
-    def accuracy(self,y_hat):
-        return len(np.where(y_hat==self.y)[0])/len(self.y)
+    def accuracy(self,y_hat,y):
+        return len(np.where(y_hat==y)[0])/len(y)
 train_X_st=train_X
 aa=ThreeLayers_NeuralNetworks(0.1,400)
 aa.fit(train_X_st,train_y)
 train_y_hat=aa.feedforward(train_X_st)
 print(train_y_hat)
-print(aa.Accuracy)
+print(aa.Accuracy_test,'\n',aa.Accuracy_train)
 print(aa.cost)
 """
 可视化
@@ -113,12 +116,6 @@ ax[2].set_ylim(0,1)
 ax[2].set_xlabel("Iteration")#设置x轴标签
 ax[2].set_ylabel("Accuracy")#设置y轴标签
 ax[2].set_title("Accuracy Change")#设置标题
-"""feature1 = np.linspace(1.5, 5, 400)#在1.5~5间均匀生成400个数,400比较大，会运行得久一些，但是生成的界限比较光滑
-feature2 = np.linspace(0, 3, 400)#在0~3间均匀生成400个数
-XX1, XX2 = np.meshgrid(feature1, feature2)#生成网格点坐标矩阵
-XX=np.insert(np.c_[XX1.ravel(),XX2.ravel()], 0, 1, axis=1)#平铺并合并XX1和XX2，方便预测网格点上每个点的分类
-z = np.dot(XX, aa.omiga[0])
-yy = np.argmax(z, axis=1).reshape(np.shape(XX1))#预测网格点上每个点的分类"""
 cont=ax[0].contourf(XX1,XX2,aa.ZZ[0],alpha=0.2,cmap='Set3')#绘制决策界限
 line1,=ax[1].plot([],[])#在第二个坐标轴上绘制损失函数下降情况
 sca2=ax[2].scatter([],[],label='training set',s=10,c='red')#在第三个坐标轴上绘制训练集预测准确率变化情况
@@ -128,14 +125,12 @@ def animate(i):#定义动画更新函数
     global cont
     for c in cont.collections:  # 加快动画运行速率
         c.remove()
-    """z = np.dot(XX, aa.omiga[i])
-    yy = np.argmax(z, axis=1).reshape(np.shape(XX1))  # 根据权值更新预测情况"""
     cont = ax[0].contourf(XX1, XX2, aa.ZZ[i], alpha=0.2, cmap='Set3')  # 更新决策界限
     line1.set_data(ite[:i],aa.cost[:i])
-    sca2.set_offsets(np.stack((ite[:i],aa.Accuracy[:i]),axis=1))
-    #sca3.set_offsets(np.stack((ite[:i],ac_test[:i]),axis=1))
-    return ax[0],line1,sca2#,sca3
+    sca2.set_offsets(np.stack((ite[:i],aa.Accuracy_train[:i]),axis=1))
+    sca3.set_offsets(np.stack((ite[:i],aa.Accuracy_test[:i]),axis=1))
+    return ax[0],line1,sca2,sca3
 ani=animation.FuncAnimation(fig,animate,frames=400,interval=10)
 plt.legend()
 plt.show()
-#ani.save('Perceptron_3Classes_Mini_batch_Adam.gif',writer='imagemagick',fps=60)#保存动态图（需要安装imagemagick）
+#ani.save('ThreeLayers_NeuralNetwork_Iris.gif',writer='imagemagick',fps=60)#保存动态图（需要安装imagemagick）
