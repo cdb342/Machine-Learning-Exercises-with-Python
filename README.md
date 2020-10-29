@@ -1,9 +1,15 @@
 # NJUST机器学习课后作业python实现
 - ## 神经网络
 ### I.以两门考试成绩数据集进行二分类
+### 三层神经网络实现二分类的反向传播算法向量化计算推导如图所示，方框部分即为所需梯度
+![](./res/backforword_vectorization_2classes.jpg)
 ![](./res/ThreeLayers_NeuralNetwork_Exam.gif)
 ### II.以鸢尾花数据集进行三分类
+### 三层神经网络实现三分类的反向传播算法向量化计算推导如图所示，方框部分即为所需梯度
+![](./res/backforword_vectorization_3classes.jpg)
 ![](./res/ThreeLayers_NeuralNetwork_Iris.gif)
+### III.任意规模的神经网络分类器
+### 可以任选隐藏层和输出层的规模、激活函数、损失函数、mini-batch的大小等，内置Exam数据集、Iris数据集和MNIST数据集，并且对于其他文件中的一些细节在此文件中做了优化处理
 - ## 感知机
 ### I.以两门考试成绩数据集进行二分类，Mini_batch梯度下降
 ### 因为梯度下降会遇到局部极小值点，所以用了Adam算法，因为数据集线性不可分，所以最后不能收敛
