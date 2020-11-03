@@ -1,4 +1,7 @@
 # NJUST机器学习课后作业python实现
+- ## 朴素贝叶斯
+### I.Multinomial Naïve Bayes
+### II.Multi-variate Bernoulli Naïve Bayes
 - ## 神经网络
 ### I.以两门考试成绩数据集进行二分类
 ![](./res/ThreeLayers_NeuralNetwork_Exam.gif)
