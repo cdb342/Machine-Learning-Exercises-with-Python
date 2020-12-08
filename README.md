@@ -1,4 +1,6 @@
 # NJUST机器学习课后作业python实现
+- ## 聚类
+### K-means
 - ## 朴素贝叶斯
 ### I.Multinomial Naïve Bayes
 ### II.Multi-variate Bernoulli Naïve Bayes
